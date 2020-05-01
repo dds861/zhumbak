@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSearch"
+        style="@style/MyCardViewStyleSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        ads:cardBackgroundColor="@color/primary"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+        ads:layout_constraintTop_toTopOf="parent"
+        card_view:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/iv_makal_clear_search"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/ic_action_search"
+                android:drawableLeft="@drawable/ic_action_search"
+                android:hint="@string/search_hint"
+
+                android:paddingLeft="4dp"
+                android:paddingTop="2dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/primary_light"
+                android:textColorHint="@color/divider" />
+
+            <ImageView
+                android:id="@+id/iv_makal_clear_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="4dp"
+                android:paddingTop="2dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="2dp"
+                android:src="@drawable/ic_action_clear_search" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMakals"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/cardViewSearch"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/cardViewSearch"
+        tools:listitem="@layout/item_makal" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

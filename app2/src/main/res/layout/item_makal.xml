@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/primary"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    app:cardBackgroundColor="@color/primary"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_dark"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="40dp"
+            android:paddingBottom="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/primary_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="г. Нур-Султан, ул. Сейфуллина 22" />
+
+        <ImageView
+            android:id="@+id/ivLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:src="@drawable/ic_location_on_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAddress" />
+
+        <TextView
+            android:id="@+id/tvBranch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/primary_light"
+            app:layout_constraintBottom_toTopOf="@id/tvPhoneText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddress"
+            tools:text="Руководитель отдела Сарыаркинского района по социальному обеспечению" />
+
+        <ImageView
+            android:id="@+id/tvPhoneText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_call_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPhone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvPhone" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/primary_light"
+            app:layout_constraintBottom_toTopOf="@id/tvScheduleText"
+            app:layout_constraintStart_toEndOf="@id/tvPhoneText"
+            tools:text="8-7172-32-35-01" />
+
+
+        <ImageView
+            android:id="@+id/tvScheduleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_access_time_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSchedule"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSchedule" />
+
+        <TextView
+            android:id="@+id/tvSchedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/primary_light"
+            app:layout_constraintBottom_toTopOf="@id/ivCopy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvPhoneText"
+
+            tools:text="Понедельник – пятница с 09:00 до 18:30 часов, обед с 13:00 до 14:30" />
+
+
+        <ImageView
+            android:id="@+id/ivCopy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_action_copy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivShare" />
+
+        <ImageView
+            android:id="@+id/ivShare"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_action_share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivWhatsApp" />
+
+        <ImageView
+            android:id="@+id/ivWhatsApp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_whatsapp_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

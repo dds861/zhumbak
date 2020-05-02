@@ -7,9 +7,9 @@
         android:name="com.dd.conqazaqstan.sqlite.base.MakalApplication"
         android:allowBackup="false"
 
-        android:icon="@drawable/ic_customer_service"
+        android:icon="@drawable/ic_essentials"
         android:label="@string/application_name"
-        android:roundIcon="@drawable/ic_customer_service"
+        android:roundIcon="@drawable/ic_essentials"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
@@ -24,16 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <receiver android:name="com.dd.conqazaqstan.sqlite.ui.widget.WidgetView">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/new_app_widget_info" />
-        </receiver>
 
 
     </application>

@@ -1,7 +1,7 @@
 package com.dd.conqazaqstan.sqlite.ui.widget
 
 import android.content.Context
-import com.dd.domain.usecase.GetLocalRandomMakalUseCase
+import com.dd.domain.usecase.GetLocalRandomZhumbakUseCase
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -16,14 +16,14 @@ class WidgetViewModel(private val context: Context) : KodeinAware {
     /**
      * Custom variables
      */
-    private val getLocalRandomMakalUseCase: GetLocalRandomMakalUseCase by instance()
+    private val getLocalRandomZhumbakUseCase: GetLocalRandomZhumbakUseCase by instance()
 
     /**
      * Custom functions
      */
     suspend fun getRandomMakal(): String {
 
-        val randomMakal = getLocalRandomMakalUseCase.execute(Unit)
-        return randomMakal.randomMakal
+        val randomMakal = getLocalRandomZhumbakUseCase.execute(Unit)
+        return randomMakal.zhumbakModel.question
     }
 }

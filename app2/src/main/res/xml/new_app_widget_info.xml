@@ -6,7 +6,7 @@
     android:minWidth="180dp"
     android:minResizeHeight="40dp"
     android:minResizeWidth="110dp"
-    android:previewImage="@drawable/ic_customer_service"
+    android:previewImage="@drawable/ic_essentials"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen"/>

@@ -6,8 +6,6 @@ import com.carmabs.ema.android.ui.EmaFragmentActivity
 import com.dd.conqazaqstan.sqlite.ui.category.CategoryNavigator
 import com.dd.conqazaqstan.sqlite.ui.main.HomeNavigator
 import com.dd.conqazaqstan.sqlite.ui.main.MainToolbarsViewModel
-import com.dd.conqazaqstan.sqlite.ui.makal.MakalNavigator
-import com.dd.conqazaqstan.sqlite.ui.search.SearchNavigator
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -25,7 +23,4 @@ fun activityInjection(activity: Activity) = Kodein.Module(name = "ActivityModule
 
     bind<CategoryNavigator>() with singleton { CategoryNavigator(instance(), instance()) }
 
-    bind<MakalNavigator>() with singleton { MakalNavigator(instance(), instance()) }
-
-    bind<SearchNavigator>() with singleton { SearchNavigator(instance(), instance()) }
 }

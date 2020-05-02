@@ -5,9 +5,9 @@ import androidx.navigation.NavController
 import com.carmabs.ema.android.navigation.EmaNavigator
 import com.carmabs.ema.core.navigator.EmaBaseNavigator
 import com.carmabs.ema.core.navigator.EmaNavigationState
-import com.dd.conqazaqstan.sqlite.R
 
-class HomeNavigator(override val navController: NavController, val activity: Activity) : EmaNavigator<HomeNavigator.Navigation> {
+class HomeNavigator(override val navController: NavController, val activity: Activity) :
+    EmaNavigator<HomeNavigator.Navigation> {
     sealed class Navigation : EmaNavigationState {
         object Back : Navigation() {
             override fun navigateWith(navigator: EmaBaseNavigator<out EmaNavigationState>) {
@@ -16,12 +16,7 @@ class HomeNavigator(override val navController: NavController, val activity: Act
             }
         }
 
-        object Search : Navigation() {
-            override fun navigateWith(navigator: EmaBaseNavigator<out EmaNavigationState>) {
-                val nav = navigator as HomeNavigator
-                nav.toSearch()
-            }
-        }
+
     }
 
     private fun toBack() {
@@ -29,8 +24,5 @@ class HomeNavigator(override val navController: NavController, val activity: Act
             activity.finish()
     }
 
-    private fun toSearch() {
-        navigateWithAction(R.id.action_global_searchViewFragment,
-                null)
-    }
+
 }

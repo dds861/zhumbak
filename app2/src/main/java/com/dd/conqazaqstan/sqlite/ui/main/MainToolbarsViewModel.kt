@@ -27,20 +27,23 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
     /**
      * Custom functions
      */
-    fun onActionUpdateToolbar(update: Boolean = true, updateToolbar: (ToolbarModel) -> ToolbarModel) {
+    fun onActionUpdateToolbar(
+        update: Boolean = true,
+        updateToolbar: (ToolbarModel) -> ToolbarModel
+    ) {
         checkDataState {
             if (update)
                 updateToNormalState {
                     copy(
-                            toolbarModel = updateToolbar.invoke(it.toolbarModel),
-                            step = HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR
+                        toolbarModel = updateToolbar.invoke(it.toolbarModel),
+                        step = HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR
                     )
                 }
             else
                 updateDataState {
                     copy(
-                            toolbarModel = updateToolbar.invoke(it.toolbarModel),
-                            step = HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR
+                        toolbarModel = updateToolbar.invoke(it.toolbarModel),
+                        step = HomeToolbarState.HomeToolbarStateStep.UPDATE_TOOLBAR
                     )
                 }
         }
@@ -55,16 +58,11 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
     }
 
 
-
-    fun onActionSearchClick() {
-        navigate(HomeNavigator.Navigation.Search)
-    }
-
     fun onActionShowInterstitialAd() {
         checkDataState {
             updateToNormalState {
                 copy(
-                        step = HomeToolbarState.HomeToolbarStateStep.SHOW_INTERSTITIAL
+                    step = HomeToolbarState.HomeToolbarStateStep.SHOW_INTERSTITIAL
                 )
             }
         }

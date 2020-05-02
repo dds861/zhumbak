@@ -18,7 +18,8 @@ import kotlinx.android.synthetic.main.item_banner_ad_container.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.kodein.di.generic.instance
 
-class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainToolbarsViewModel, HomeNavigator.Navigation> {
+class MainToolbarsViewActivity : BaseActivity(),
+    EmaView<HomeToolbarState, MainToolbarsViewModel, HomeNavigator.Navigation> {
     /**
      * Default variables
      */
@@ -130,17 +131,14 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
 
         adView.adSize = adSize
         val adRequest = AdRequest
-                .Builder()
-                .build()
+            .Builder()
+            .build()
         adView.loadAd(adRequest)
     }
 
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
         vm = viewModel
 
-        ivToolbarSearch.setOnSearchClickListener(View.OnClickListener {
-            viewModel.onActionSearchClick()
-        })
         etSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
         etSearch.hint = resources.getString(R.string.hint_search)
         etSearch.setHintTextColor(Color.LTGRAY)
@@ -152,12 +150,22 @@ class MainToolbarsViewActivity : BaseActivity(), EmaView<HomeToolbarState, MainT
             when (destination.id == R.id.categoryViewFragment) {
                 //Logo pressed
                 true -> {
-                    ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.drawable.ic_customer_service, null))
+                    ivToolbarLogoOrBack.setImageDrawable(
+                        resources.getDrawable(
+                            R.drawable.ic_essentials,
+                            null
+                        )
+                    )
                     ivToolbarLogoOrBack.setOnClickListener { }
                 }
                 //Back pressed
                 false -> {
-                    ivToolbarLogoOrBack.setImageDrawable(resources.getDrawable(R.drawable.ic_keyboard_arrow_left_black_24dp, null))
+                    ivToolbarLogoOrBack.setImageDrawable(
+                        resources.getDrawable(
+                            R.drawable.ic_keyboard_arrow_left_black_24dp,
+                            null
+                        )
+                    )
                     ivToolbarLogoOrBack.setOnClickListener {
                         //hide/show searchView on Back press
                         ivToolbarSearch.onActionViewCollapsed()

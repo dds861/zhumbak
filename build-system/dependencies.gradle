@@ -86,7 +86,8 @@ rootProject.ext {
             firebase_analytics  : "com.google.firebase:firebase-analytics:" + project.firebase_analytics,
             firebase_ads        : "com.google.firebase:firebase-ads:" + project.firebase_ads,
             recyclerview        : "androidx.recyclerview:recyclerview:" + project.recyclerview,
-            play_services       : "com.google.android.gms:play-services-ads:" + project.play_services
+            play_services       : "com.google.android.gms:play-services-ads:" + project.play_services,
+
     ]
 
 

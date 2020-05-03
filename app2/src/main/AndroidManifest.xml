@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.dd.conqazaqstan.sqlite">
+    package="com.dd.zhumbak">
 
     <application
-        android:name="com.dd.conqazaqstan.sqlite.base.MakalApplication"
+        android:name=".base.MakalApplication"
         android:allowBackup="false"
 
         android:icon="@drawable/ic_essentials"
@@ -18,7 +18,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_ad_app_id" />
 
-        <activity android:name="com.dd.conqazaqstan.sqlite.ui.main.MainToolbarsViewActivity">
+        <activity android:name=".ui.main.MainToolbarsViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

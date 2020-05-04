@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.carmabs.ema.core.navigator.EmaNavigationState
 import com.carmabs.ema.core.state.EmaBaseState
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.dd.zhumbak.R
 import com.dd.zhumbak.ui.main.MainToolbarsViewModel
 import com.google.android.gms.ads.AdRequest
@@ -49,6 +51,7 @@ abstract class BaseToolbarsFragment<S : EmaBaseState, VM : BaseToolbarsViewModel
                 Log.i("autolog", "onRewardedAdLoaded: ");
                 btnGenerate.isEnabled = true
                 btnGenerate.isClickable = true
+                YoYo.with(Techniques.Bounce).duration(1000).repeat(0).playOn(btnGenerate)
                 // Ad successfully loaded.
             }
 

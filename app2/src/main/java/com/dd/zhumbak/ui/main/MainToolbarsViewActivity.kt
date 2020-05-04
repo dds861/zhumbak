@@ -11,6 +11,8 @@ import com.carmabs.ema.android.extra.EmaReceiverModel
 import com.carmabs.ema.android.extra.EmaResultModel
 import com.carmabs.ema.android.ui.EmaView
 import com.carmabs.ema.core.state.EmaExtraData
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.dd.zhumbak.R
 import com.dd.zhumbak.base.BaseActivity
 import com.dd.zhumbak.model.ToolbarModel
@@ -158,6 +160,7 @@ class MainToolbarsViewActivity : BaseActivity(),
                 )
             }
             4 -> {
+                onAnimateStars(ivStar1)
                 ivStar1.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
@@ -196,6 +199,8 @@ class MainToolbarsViewActivity : BaseActivity(),
                         null
                     )
                 )
+
+                onAnimateStars(ivStar2)
                 ivStar2.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
@@ -234,6 +239,8 @@ class MainToolbarsViewActivity : BaseActivity(),
                         null
                     )
                 )
+
+                onAnimateStars(ivStar3)
                 ivStar3.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
@@ -272,6 +279,7 @@ class MainToolbarsViewActivity : BaseActivity(),
                         null
                     )
                 )
+                onAnimateStars(ivStar4)
                 ivStar4.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
@@ -286,30 +294,39 @@ class MainToolbarsViewActivity : BaseActivity(),
                 )
             }
             0 -> {
+                onAnimateStars(ivStar1)
                 ivStar1.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
                         null
                     )
                 )
+
+                onAnimateStars(ivStar2)
                 ivStar2.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
                         null
                     )
                 )
+
+                onAnimateStars(ivStar3)
                 ivStar3.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
                         null
                     )
                 )
+
+                onAnimateStars(ivStar4)
                 ivStar4.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
                         null
                     )
                 )
+
+                onAnimateStars(ivStar5)
                 ivStar5.setImageDrawable(
                     resources.getDrawable(
                         R.drawable.ic_star_border_black_24dp,
@@ -319,6 +336,10 @@ class MainToolbarsViewActivity : BaseActivity(),
             }
         }
 
+    }
+
+    private fun onAnimateStars(view: View) {
+        YoYo.with(Techniques.Flash).duration(1000).repeat(0).playOn(view)
     }
 
     /**

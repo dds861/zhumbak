@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.NonNull
 import com.carmabs.ema.core.constants.STRING_EMPTY
@@ -47,7 +48,6 @@ class CategoryViewFragment :
         vm = viewModel
         setupListener()
 
-
     }
 
 
@@ -59,7 +59,9 @@ class CategoryViewFragment :
         tvAddress.text = data.zhumbakModel.question
         tvBranch.text = STRING_EMPTY
 
+        onChangeNewZhumbakButtonText()
     }
+
 
     override fun onAlternative(data: EmaExtraData) {
     }
@@ -74,70 +76,107 @@ class CategoryViewFragment :
      * Custom functions
      */
 
+    /**
+     * Listeners
+     */
     private fun setupListener() {
-        btnGenerate.setOnClickListener {
+        btnGenerate.setOnClickListener { onGenerateButtonClick() }
 
+        btnShowAnswer.setOnClickListener { onShowAnswerButtonClick() }
 
-            showRewarded()
-        }
+        ivCopy.setOnClickListener { copyToClipboard() }
 
-        btnShowAnswer.setOnClickListener {
-            tvBranch.text = data.zhumbakModel.answer
-        }
+        ivShare.setOnClickListener { shareText() }
 
-        ivCopy.setOnClickListener {
-            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivCopy)
-            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivCopy)
-            copyToClipboard(
-                "${resources.getString(R.string.zhumbak)}: ${data.zhumbakModel.question},\n" +
-                        "${resources.getString(R.string.zhauap)}: ${data.zhumbakModel.answer}"
-            )
-        }
+        ivWhatsApp.setOnClickListener { onClickWhatsApp() }
+    }
 
-        ivShare.setOnClickListener {
-            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivShare)
-            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivShare)
-            shareText(
-                "${resources.getString(R.string.zhumbak)}: ${data.zhumbakModel.question},\n" +
-                        "${resources.getString(R.string.zhauap)}: ${data.zhumbakModel.answer}"
-            )
-        }
-
-        ivWhatsApp.setOnClickListener {
-            YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(ivWhatsApp)
-            YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(ivWhatsApp)
-
-            onClickWhatsApp(
-                "${resources.getString(R.string.zhumbak)}: ${data.zhumbakModel.question},\n" +
-                        "${resources.getString(R.string.zhauap)}: ${data.zhumbakModel.answer}"
-            )
+    private fun onChangeNewZhumbakButtonText() {
+        if (getScoreFromSharedPreferences() == 0) {
+            btnGenerate.text = resources.getString(R.string.watch_ads)
+        } else {
+            btnGenerate.text = resources.getString(R.string.new_zhumbak)
         }
     }
+
+    private fun onGenerateButtonClick() {
+
+        onAnimateQuestionText(tvAddress)
+        val score = getScoreFromSharedPreferences()
+        if (score != null) {
+            if (score > 0) {
+                saveToSharedPreferences(score - 1)
+                vm.onActionGenerateClick()
+                mainToolbarsVm.onActionUpdateStars()
+            } else {
+                showRewarded()
+            }
+        }
+
+    }
+
+
+    private fun onShowAnswerButtonClick() {
+        if (tvBranch.text.isNotEmpty()) {
+            tvBranch.text = STRING_EMPTY
+            btnShowAnswer.text = resources.getString(R.string.show_answer)
+        } else {
+            onAnimateAnswerText(tvBranch)
+            tvBranch.text = data.zhumbakModel.answer
+            btnShowAnswer.text = resources.getString(R.string.hide_answer)
+        }
+    }
+
+
+    private fun getScoreFromSharedPreferences(): Int? {
+        return sharedPref?.getInt(
+            getString(R.string.saved_high_score_key),
+            resources.getInteger(R.integer.saved_high_score)
+        )
+    }
+
+    private fun saveToSharedPreferences(score: Int) {
+        sharedPref ?: return
+        with(sharedPref?.edit()) {
+            this?.putInt(
+                resources.getString(R.string.saved_high_score_key),
+                score
+            )
+            this?.apply()
+        }
+    }
+
 
     private fun showRewarded() {
         if (rewardedAd.isLoaded) {
             val activityContext: Activity = requireActivity()
             val adCallback = object : RewardedAdCallback() {
                 override fun onRewardedAdOpened() {
-                    Log.i("autolog", "onRewardedAdOpened: ");
                     // Ad opened.
                 }
 
                 override fun onRewardedAdClosed() {
-                    Log.i("autolog", "onRewardedAdClosed: ");
                     // Ad closed.
                     rewardedAd = createAndLoadRewardedAd()
+                    btnGenerate.isEnabled = false
+                    btnGenerate.isClickable = false
                 }
 
                 override fun onUserEarnedReward(@NonNull reward: RewardItem) {
-                    Log.i("autolog", "onUserEarnedReward: ");
                     // User earned reward.
+                    saveToSharedPreferences(resources.getInteger(R.integer.saved_high_score))
+
+                    mainToolbarsVm.onActionUpdateStars()
                     vm.onActionGenerateClick()
                 }
 
                 override fun onRewardedAdFailedToShow(errorCode: Int) {
-                    Log.i("autolog", "onRewardedAdFailedToShow: ");
                     // Ad failed to display.
+                    Toast.makeText(
+                        requireContext(),
+                        resources.getString(R.string.ads_load_fail),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
             rewardedAd.show(activityContext, adCallback)
@@ -146,7 +185,10 @@ class CategoryViewFragment :
         }
     }
 
-    private fun shareText(text: String) {
+    private fun shareText() {
+        onAnimateViewOnClick(ivShare)
+        val text = onGetTextToSend()
+
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, text)
@@ -159,7 +201,11 @@ class CategoryViewFragment :
         )
     }
 
-    private fun copyToClipboard(text: String) {
+    private fun copyToClipboard() {
+        onAnimateViewOnClick(ivCopy)
+
+        val text = onGetTextToSend()
+
         val clipboard =
             requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
         val clip = ClipData.newPlainText("Makal text", text)
@@ -167,7 +213,11 @@ class CategoryViewFragment :
         Toast.makeText(requireContext(), R.string.TextCopied, Toast.LENGTH_SHORT).show()
     }
 
-    private fun onClickWhatsApp(text: String) {
+    private fun onClickWhatsApp() {
+        onAnimateViewOnClick(ivWhatsApp)
+        val text = onGetTextToSend()
+
+
         val pm: PackageManager = requireContext().packageManager
         try {
             val waIntent = Intent(Intent.ACTION_SEND)
@@ -184,4 +234,29 @@ class CategoryViewFragment :
         }
     }
 
+    private fun onGetTextToSend(): String {
+        if (tvBranch.text.isEmpty()) {
+            return "${resources.getString(R.string.zhumbak)}: ${data.zhumbakModel.question},\n"
+        } else {
+            return "${resources.getString(R.string.zhumbak)}: ${data.zhumbakModel.question},\n" +
+                    "${resources.getString(R.string.zhauap)}: ${data.zhumbakModel.answer}"
+        }
+    }
+
+    /**
+     * Animations
+     */
+
+    private fun onAnimateViewOnClick(view: View) {
+        YoYo.with(Techniques.FadeOut).duration(150).repeat(0).playOn(view)
+        YoYo.with(Techniques.FadeIn).duration(350).repeat(0).playOn(view)
+    }
+
+    private fun onAnimateQuestionText(view: View) {
+        YoYo.with(Techniques.FlipInX).duration(1000).repeat(0).playOn(view)
+    }
+
+    private fun onAnimateAnswerText(view: View) {
+        YoYo.with(Techniques.BounceIn).duration(1000).repeat(0).playOn(view)
+    }
 }

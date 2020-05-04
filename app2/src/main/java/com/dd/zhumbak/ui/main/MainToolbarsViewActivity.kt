@@ -1,11 +1,12 @@
 package com.dd.zhumbak.ui.main
 
-import android.graphics.Color
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.widget.EditText
-import androidx.appcompat.widget.SearchView
 import com.carmabs.ema.android.extra.EmaReceiverModel
 import com.carmabs.ema.android.extra.EmaResultModel
 import com.carmabs.ema.android.ui.EmaView
@@ -36,8 +37,10 @@ class MainToolbarsViewActivity : BaseActivity(),
     lateinit var etSearch: EditText
     private lateinit var adView: AdView
     private lateinit var mInterstitialAd: InterstitialAd
+    private lateinit var sharedPref: SharedPreferences
 
-    private val adSize: AdSize
+    private
+    val adSize: AdSize
         get() {
             //code from official Google Admobs
             val display = windowManager.defaultDisplay
@@ -59,8 +62,17 @@ class MainToolbarsViewActivity : BaseActivity(),
         super.onCreate(savedInstanceState)
         initializeViewModel(this)
 
+        sharedPref = applicationContext.getSharedPreferences(
+            getString(R.string.saved_high_score_key),
+            Context.MODE_PRIVATE
+        )
+        showStar()
+        Log.i("autolog", "getScoreFromSharedPreferences(): " + getScoreFromSharedPreferences());
+
         setupMobileAds()
+        setupStars()
     }
+
 
     override fun onResultReceiverInvokeEvent(emaReceiverModel: EmaReceiverModel) {
     }
@@ -98,12 +110,216 @@ class MainToolbarsViewActivity : BaseActivity(),
             HomeToolbarState.HomeToolbarStateStep.SHOW_REWARDED -> {
 
             }
+            HomeToolbarState.HomeToolbarStateStep.SHOW_STARS -> {
+                showStar()
+            }
         }
     }
 
     /**
      * Customs functions
      */
+    private fun setupStars() {
+
+    }
+
+    private fun showStar() {
+        when (getScoreFromSharedPreferences()) {
+            5 -> {
+                ivStar1.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar2.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar3.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar4.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar5.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+            }
+            4 -> {
+                ivStar1.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar2.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar3.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar4.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar5.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+            }
+            3 -> {
+                ivStar1.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar2.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar3.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar4.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar5.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+            }
+            2 -> {
+                ivStar1.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar2.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar3.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar4.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+                ivStar5.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+            }
+            1 -> {
+                ivStar1.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar2.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar3.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar4.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar5.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_black_24dp,
+                        null
+                    )
+                )
+            }
+            0 -> {
+                ivStar1.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar2.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar3.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar4.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+                ivStar5.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.ic_star_border_black_24dp,
+                        null
+                    )
+                )
+            }
+        }
+
+    }
 
     /**
      * AdMob
@@ -152,6 +368,16 @@ class MainToolbarsViewActivity : BaseActivity(),
         }
     }
 
+    /**
+     * SharedPreferences
+     */
+    private fun getScoreFromSharedPreferences(): Int {
+        return sharedPref.getInt(
+            getString(R.string.saved_high_score_key),
+            resources.getInteger(R.integer.saved_high_score)
+        )
+    }
+
 
     /**
      * Toolbar
@@ -160,10 +386,7 @@ class MainToolbarsViewActivity : BaseActivity(),
     private fun setupToolbar(viewModel: MainToolbarsViewModel) {
         vm = viewModel
 
-        etSearch = ivToolbarSearch.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
-        etSearch.hint = resources.getString(R.string.hint_search)
-        etSearch.setHintTextColor(Color.LTGRAY)
-        etSearch.setTextColor(Color.WHITE)
+
     }
 
     private fun updateToolbar(data: ToolbarModel) {
@@ -188,8 +411,7 @@ class MainToolbarsViewActivity : BaseActivity(),
                         )
                     )
                     ivToolbarLogoOrBack.setOnClickListener {
-                        //hide/show searchView on Back press
-                        ivToolbarSearch.onActionViewCollapsed()
+
 
                         vm.onActionBackClicked()
                     }
@@ -229,25 +451,8 @@ class MainToolbarsViewActivity : BaseActivity(),
         }
 
         data.searchButton?.let { searchButton ->
-            ivToolbarSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    searchButton.setOnQueryTextFocusChangeListener?.invoke(query.toLowerCase())
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    searchButton.setOnQueryTextFocusChangeListener?.invoke(newText.toLowerCase())
-                    return false
-                }
-            })
 
 
-
-            if (searchButton.visibility) {
-                ivToolbarSearch.visibility = View.VISIBLE
-            } else {
-                ivToolbarSearch.visibility = View.GONE
-            }
         }
     }
 }

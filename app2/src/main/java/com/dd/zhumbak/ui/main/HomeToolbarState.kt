@@ -13,5 +13,6 @@ data class HomeToolbarState(
         UPDATE_TOOLBAR,
         SHOW_INTERSTITIAL,
         SHOW_REWARDED,
+        SHOW_STARS
     }
 }

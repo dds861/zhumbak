@@ -46,5 +46,10 @@
     <string name="zhumbak">Жұмбақ</string>
     <string name="zhauap">Жауап</string>
     <string name="show_answer">Жауабын көрсету</string>
+    <string name="hide_answer">Жауабты жасыру</string>
+    <string name="saved_high_score_key">SAVED_HIGH_SCORE_KEY</string>
+    <string name="watch_ads">Жарнама қарау</string>
+    <string name="ads_watch_cancelled">Жарнама үзілді</string>
+    <string name="ads_load_fail">Сәтсіздік</string>
 
 </resources>

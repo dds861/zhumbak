@@ -78,4 +78,13 @@ class MainToolbarsViewModel : BaseViewModel<HomeToolbarState, HomeNavigator.Navi
             }
         }
     }
+    fun onActionUpdateStars() {
+        checkDataState {
+            updateToNormalState {
+                copy(
+                    step = HomeToolbarState.HomeToolbarStateStep.SHOW_STARS
+                )
+            }
+        }
+    }
 }

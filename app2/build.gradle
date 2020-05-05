@@ -20,7 +20,7 @@ android {
             resValue 'string', 'ADMOB_AD_APP_ID', '"ca-app-pub-3940256099942544~3347511713"'
             resValue 'string', 'BANNER_AD_UNIT_ID', 'ca-app-pub-3940256099942544/6300978111'
             resValue 'string', 'INTERSTITIAL_AD_UNIT_ID', 'ca-app-pub-3940256099942544/1033173712'
-            resValue 'string', 'REWARDED_AD_UNIT_ID', 'ca-app-pub-3940256099942544/1033173712'
+            resValue 'string', 'REWARDED_AD_UNIT_ID', 'ca-app-pub-3940256099942544/5224354917'
         }
         release {
             minifyEnabled false

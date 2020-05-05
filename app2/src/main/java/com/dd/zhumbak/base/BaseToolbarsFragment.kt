@@ -2,6 +2,9 @@ package com.dd.zhumbak.base
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.util.Log
 import com.carmabs.ema.core.navigator.EmaNavigationState
 import com.carmabs.ema.core.state.EmaBaseState
@@ -14,6 +17,8 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.kodein.di.generic.instance
+import java.net.InetAddress
+
 
 abstract class BaseToolbarsFragment<S : EmaBaseState, VM : BaseToolbarsViewModel<S, NS>, NS : EmaNavigationState>
     : BaseFragment<S, VM, NS>() {
@@ -58,10 +63,48 @@ abstract class BaseToolbarsFragment<S : EmaBaseState, VM : BaseToolbarsViewModel
             override fun onRewardedAdFailedToLoad(errorCode: Int) {
                 Log.i("autolog", "onRewardedAdFailedToLoad: ");
                 // Ad failed to load.
+
             }
         }
         rewardedAd.loadAd(AdRequest.Builder().build(), adLoadCallback)
 
+    }
+
+
+    fun hasInternetConnected(): Boolean {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val connectivityManager =
+                    requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                val capabilities =
+
+                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+
+                if (capabilities != null) {
+                    when {
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                            Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                            return true
+                        }
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                            Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                            return true
+                        }
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                            Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                            return true
+                        }
+                    }
+                }
+                return false
+
+            } else {
+                val ipAddr: InetAddress = InetAddress.getByName("google.com")
+                return !ipAddr.equals("")
+            }
+        } catch (e: Exception) {
+            return false
+        }
     }
 
     fun createAndLoadRewardedAd(): RewardedAd {

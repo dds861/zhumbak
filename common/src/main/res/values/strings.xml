@@ -42,5 +42,6 @@
     <string name="watch_ads">Жарнама қарау</string>
     <string name="ads_watch_cancelled">Жарнама үзілді</string>
     <string name="ads_load_fail">Сәтсіздік</string>
+    <string name="check_internet_connection">Интернет қосылымын тексеріңіз</string>
 
 </resources>

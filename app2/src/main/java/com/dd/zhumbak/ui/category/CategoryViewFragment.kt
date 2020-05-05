@@ -6,6 +6,9 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -21,6 +24,7 @@ import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.kodein.di.generic.instance
+import java.net.InetAddress
 
 class CategoryViewFragment :
     BaseToolbarsFragment<CategoryState, CategoryViewModel, CategoryNavigator.Navigation>() {
@@ -91,6 +95,8 @@ class CategoryViewFragment :
         ivWhatsApp.setOnClickListener { onClickWhatsApp() }
     }
 
+
+
     private fun onChangeNewZhumbakButtonText() {
         if (getScoreFromSharedPreferences() == 0) {
             btnGenerate.text = resources.getString(R.string.watch_ads)
@@ -109,7 +115,11 @@ class CategoryViewFragment :
                 vm.onActionGenerateClick()
                 mainToolbarsVm.onActionUpdateStars()
             } else {
-                showRewarded()
+                if (hasInternetConnected()) {
+                    showRewarded()
+                } else {
+                    Toast.makeText(requireContext(), resources.getString(R.string.check_internet_connection), Toast.LENGTH_LONG).show()
+                }
             }
         }
 

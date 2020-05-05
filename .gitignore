@@ -14,3 +14,5 @@
 .cxx
 
 app2/google-services.json
+
+*.aab

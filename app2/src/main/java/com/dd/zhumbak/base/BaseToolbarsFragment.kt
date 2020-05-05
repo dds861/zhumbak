@@ -45,7 +45,7 @@ abstract class BaseToolbarsFragment<S : EmaBaseState, VM : BaseToolbarsViewModel
     )
 
     private fun loadRewardedAd() {
-        rewardedAd = RewardedAd(requireContext(), resources.getString(R.string.rewarded_ad_unit_id))
+        rewardedAd = RewardedAd(requireContext(), resources.getString(R.string.REWARDED_AD_UNIT_ID))
         val adLoadCallback = object : RewardedAdLoadCallback() {
             override fun onRewardedAdLoaded() {
                 Log.i("autolog", "onRewardedAdLoaded: ");
@@ -66,7 +66,7 @@ abstract class BaseToolbarsFragment<S : EmaBaseState, VM : BaseToolbarsViewModel
 
     fun createAndLoadRewardedAd(): RewardedAd {
         val rewardedAd =
-            RewardedAd(requireContext(), resources.getString(R.string.rewarded_ad_unit_id))
+            RewardedAd(requireContext(), resources.getString(R.string.REWARDED_AD_UNIT_ID))
         val adLoadCallback = object : RewardedAdLoadCallback() {
             override fun onRewardedAdLoaded() {
                 // Ad successfully loaded.

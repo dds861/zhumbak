@@ -7,16 +7,16 @@
         android:name=".base.MakalApplication"
         android:allowBackup="false"
 
-        android:icon="@drawable/ic_essentials"
+        android:icon="@drawable/ic_question_no_background"
         android:label="@string/application_name"
-        android:roundIcon="@drawable/ic_essentials"
+        android:roundIcon="@drawable/ic_question_no_background"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_ad_app_id" />
+            android:value="@string/ADMOB_AD_APP_ID" />
 
         <activity android:name=".ui.main.MainToolbarsViewActivity">
             <intent-filter>

@@ -360,7 +360,7 @@ class MainToolbarsViewActivity : BaseActivity(),
 
     private fun loadInterstitialAd() {
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = resources.getString(R.string.interstitial_ad_unit_id)
+        mInterstitialAd.adUnitId = resources.getString(R.string.INTERSTITIAL_AD_UNIT_ID)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         mInterstitialAd.adListener = object : AdListener() {
@@ -373,7 +373,7 @@ class MainToolbarsViewActivity : BaseActivity(),
 
 
     private fun loadBanner() {
-        adView.adUnitId = resources.getString(R.string.banner_ad_unit_id)
+        adView.adUnitId = resources.getString(R.string.BANNER_AD_UNIT_ID)
 
         adView.adSize = adSize
         val adRequest = AdRequest
@@ -417,7 +417,7 @@ class MainToolbarsViewActivity : BaseActivity(),
                 true -> {
                     ivToolbarLogoOrBack.setImageDrawable(
                         resources.getDrawable(
-                            R.drawable.ic_essentials,
+                            R.drawable.ic_question,
                             null
                         )
                     )
